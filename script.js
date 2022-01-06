@@ -21,7 +21,7 @@ function populateKeyLib(){
 function keyElement(id){
 	var htmlAppend ="";
 	for (let i = 1; i <= keyStrokeList[id][1]; i++) {
-		htmlAppend += '<audio id="key'+i+'" controls >\n <source src="Audio/Key/'+keyStrokeList[id][0]+'/'+keyStrokeList[id][0]+i+'.mp3" type="audio/mpeg">Your browser does not support the audio element.</audio>'
+		htmlAppend += '<audio id="key'+i+'" controls >\n <source src="Audio/Keys/'+keyStrokeList[id][0]+'/'+keyStrokeList[id][0]+i+'.mp3" type="audio/mpeg">Your browser does not support the audio element.</audio>'
 	};
 	document.getElementById("keyStrokes").innerHTML = htmlAppend;
 	isKeySound = true;
