@@ -84,6 +84,7 @@
 		//	localStorage.backup = txtArea.value;
 		//});
 		txtArea.addEventListener('input', function(e) {
+			selectKeyStrokes();
 			localStorage.backup = txtArea.value;
 		});
 		txtArea.addEventListener('click',loadBackup(),{once:true});
