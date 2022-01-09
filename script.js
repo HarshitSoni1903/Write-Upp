@@ -2,9 +2,7 @@ var keyStrokeVol = 0.1;
 var bgmVol = 0.3;
 var fontList = ["Courier New","Lucida Handwriting","Times New Roman", "Georgia, serif"]
 var keyStrokeList = [["mec",10]];
-var bgmList = [["Deep Meditation",".mp3"],["Lake",".mp3"],["Peaceful Pino",".mp3"],["Rain",".mp3"],["River and Birds",".wav"],["Thunder and Rain",".mp3"],["Thunderstorm",".mp3"]];
-//var bgmAud = document.getElementById("bgmAud");
-//var keyDiv = document.getElementById("keyStrokes");
+var bgmList = [["Audio/Music/Deep Meditation",".mp3"],["Audio/Music/Lake",".mp3"],["Audio/Music/Peaceful Pino",".mp3"],["Audio/Music/Rain",".mp3"],["Audio/Music/River and Birds",".wav"],["Audio/Music/Thunder and Rain",".mp3"],["Audio/Music/Thunderstorm",".mp3"]];
 var isKeySound = false;
 var bgNumber = 5;
 var numKey = 0;
@@ -37,7 +35,6 @@ function stopKeySound(){
 function selectKeyStrokes(){
 	var elem = document.getElementById("key"+(Math.floor(Math.random() * (numKey) + 1)));
 	elem.volume = keyStrokeVol;
-	//console.log("playing sound");
 	elem.play();
 }
 
@@ -51,7 +48,7 @@ function populateBgmLib(){
 
 function bgmElement(id){
 	var htmlAppend = "";
-	htmlAppend = '<audio id="bgmAud" controls loop>\n <source src="Audio/Music/'+bgmList[id][0]+bgmList[id][1]+'" type="audio/mpeg">Your browser does not support the audio element.</audio>'
+	htmlAppend = '<audio id="bgmAud" controls loop>\n <source src="'+bgmList[id][0]+bgmList[id][1]+'" type="audio/mpeg">Your browser does not support the audio element.</audio>'
 	document.getElementById("bgm").innerHTML = htmlAppend;
 	var bgmAud = document.getElementById("bgmAud");
 	bgmAud.volume = bgmVol;
@@ -137,6 +134,10 @@ function saveFile() {
 	localStorage.backup = '';
 }
 
+function playSound(){
+	document.getElementById("bgmLib").firstChild.click()
+}
+
 function loadFunction(){
 	populateBgmLib();
 	populateFontLib();
@@ -144,7 +145,7 @@ function loadFunction(){
 	populateBgList();
 	data = localStorage.getItem('textCache');
 	document.getElementById("keySoundLib").firstChild.click();
-	//document.getElementById("bgmLib").firstChild.click();
+	document.addEventListener('click',playSound,{once:true});
 }
 function loadBackup(){
 	if(!localStorage.backup || localStorage.backup==''){
@@ -152,7 +153,6 @@ function loadBackup(){
 	else{
 		if(confirm("Restore Last Session?")){
 			textArea.value = localStorage.backup;
-			//console.log(localStorage.backup);
 		}
 		else{
 			localStorage.backup = '';
